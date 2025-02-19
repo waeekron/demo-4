@@ -1,0 +1,13 @@
+C:\Users\walte\kurssit\ties441\demo-4\tilakone\bin\Debug\netcoreapp3.1\tilakone.exe
+C:\Users\walte\kurssit\ties441\demo-4\tilakone\bin\Debug\netcoreapp3.1\tilakone.deps.json
+C:\Users\walte\kurssit\ties441\demo-4\tilakone\bin\Debug\netcoreapp3.1\tilakone.runtimeconfig.json
+C:\Users\walte\kurssit\ties441\demo-4\tilakone\bin\Debug\netcoreapp3.1\tilakone.runtimeconfig.dev.json
+C:\Users\walte\kurssit\ties441\demo-4\tilakone\bin\Debug\netcoreapp3.1\tilakone.dll
+C:\Users\walte\kurssit\ties441\demo-4\tilakone\bin\Debug\netcoreapp3.1\tilakone.pdb
+C:\Users\walte\kurssit\ties441\demo-4\tilakone\obj\Debug\netcoreapp3.1\tilakone.csprojAssemblyReference.cache
+C:\Users\walte\kurssit\ties441\demo-4\tilakone\obj\Debug\netcoreapp3.1\tilakone.AssemblyInfoInputs.cache
+C:\Users\walte\kurssit\ties441\demo-4\tilakone\obj\Debug\netcoreapp3.1\tilakone.AssemblyInfo.cs
+C:\Users\walte\kurssit\ties441\demo-4\tilakone\obj\Debug\netcoreapp3.1\tilakone.csproj.CoreCompileInputs.cache
+C:\Users\walte\kurssit\ties441\demo-4\tilakone\obj\Debug\netcoreapp3.1\tilakone.dll
+C:\Users\walte\kurssit\ties441\demo-4\tilakone\obj\Debug\netcoreapp3.1\tilakone.pdb
+C:\Users\walte\kurssit\ties441\demo-4\tilakone\obj\Debug\netcoreapp3.1\tilakone.genruntimeconfig.cache
