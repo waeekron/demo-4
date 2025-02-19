@@ -1,5 +1,6 @@
 ﻿using System;
-
+using System.Diagnostics;
+using System.Timers;
 
 var dc = new DigitalClock();
 
@@ -16,9 +17,11 @@ dc.Inc();
 dc.Set();
 
 Console.WriteLine(dc.GetTimeString());
+Console.ReadLine();
 class DigitalClock
 {
     public enum ClockStatus { SetMins, SetHours, ShowTime }
+    private Timer _timer = new Timer(1000);
     private int _mins;
     private int _hours;
     public int Mins
@@ -46,6 +49,7 @@ class DigitalClock
     public DigitalClock()
     {
         _status = ClockStatus.SetHours;
+        _timer.Elapsed += Step;
     }
 
     public void Set()
@@ -57,7 +61,26 @@ class DigitalClock
             ClockStatus.ShowTime => ClockStatus.SetHours,
             _ => throw new ArgumentException("invalid state")
         };
+        if (nextStatus == ClockStatus.ShowTime) Tick();
+        else StopTicking();
         Status = nextStatus;
+    }
+
+    private void StopTicking()
+    {
+        _timer.Stop();
+    }
+
+    private void Tick()
+    {
+        _timer.Start();
+    }
+
+    private void Step(object sender, ElapsedEventArgs e)
+    {
+        Console.WriteLine(GetTimeString());
+        if (Mins == 59) Hours++;
+        Mins++;
     }
 
     public void Inc()
