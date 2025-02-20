@@ -34,7 +34,7 @@ class DigitalClock
     private int _hours;
     public int Mins
     {
-        get { return Math.Abs(_mins % 60); }
+        get { return _mins % 60; }
         set
         {
             if (_mins == 0 && value == -1) _mins = 59;
@@ -43,7 +43,7 @@ class DigitalClock
     }
     public int Hours
     {
-        get { return Math.Abs(_hours % 24); }
+        get { return (_hours % 24; }
         set
         {
             if (_hours == 0 && value == -1) _hours = 23;
