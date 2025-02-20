@@ -1,0 +1,12 @@
+[*.cs]
+
+# IDE0072: Add missing cases
+dotnet_diagnostic.IDE0072.severity = suggestion
+[*.cs]
+
+# IDE0072: Add missing cases
+dotnet_diagnostic.IDE0072.severity = none
+[*.cs]
+
+# IDE0072: Add missing cases
+dotnet_diagnostic.IDE0072.severity = none

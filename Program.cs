@@ -1,23 +1,31 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Timers;
 
 var dc = new DigitalClock();
+var run = true;
+while (run)
+{
+    Console.Clear();
+    Console.WriteLine(dc.GetStatusPrompt());
+    var switchState = false;
+    while (!switchState)
+    {
+        var key = Console.ReadKey(intercept: true);
+        (key.Key switch
+        {
+            ConsoleKey.J => () => dc.Dec(),
+            ConsoleKey.K => () => dc.Inc(),
+            ConsoleKey.Enter => () =>
+            {
+                dc.Set();
+                switchState = true;
+            }
+            ,
+            _ => (Action)(() => Console.WriteLine("Bad input..."))
+        })();
+    }
+}
 
-dc.Inc();
-dc.Inc();
-
-dc.Set();
-
-
-dc.Inc();
-dc.Inc();
-dc.Inc();
-
-dc.Set();
-
-Console.WriteLine(dc.GetTimeString());
-Console.ReadLine();
 class DigitalClock
 {
     public enum ClockStatus { SetMins, SetHours, ShowTime }
@@ -26,16 +34,25 @@ class DigitalClock
     private int _hours;
     public int Mins
     {
-        get { return _mins % 60; }
-        set { _mins++; }
+        get { return Math.Abs(_mins % 60); }
+        set
+        {
+            if (_mins == 0 && value == -1) _mins = 59;
+            else _mins = value;
+        }
     }
     public int Hours
     {
-        get { return _hours % 24; }
-        set { _hours++; }
+        get { return Math.Abs(_hours % 24); }
+        set
+        {
+            if (_hours == 0 && value == -1) _hours = 23;
+            else _hours = value;
+        }
+
     }
     private ClockStatus _status;
-    private ClockStatus Status
+    public ClockStatus Status
     {
         get { return _status; }
         set
@@ -78,6 +95,8 @@ class DigitalClock
 
     private void Step(object sender, ElapsedEventArgs e)
     {
+        Console.Clear();
+        Console.WriteLine("PRESS ANY BUTTON TO RESET");
         Console.WriteLine(GetTimeString());
         if (Mins == 59) Hours++;
         Mins++;
@@ -88,11 +107,30 @@ class DigitalClock
         switch (Status)
         {
             case ClockStatus.SetMins:
-                Mins++;
+                Mins += 1;
                 Console.WriteLine($"piip-mm-{Format(Mins)}");
                 break;
             case ClockStatus.SetHours:
-                Hours++;
+                Hours += 1;
+                Console.WriteLine($"piip-hh-{Format(Hours)}");
+                break;
+
+            default:
+                Console.WriteLine("pööp -- invalid state");
+                break;
+
+        }
+    }
+    public void Dec()
+    {
+        switch (Status)
+        {
+            case ClockStatus.SetMins:
+                Mins -= 1;
+                Console.WriteLine($"piip-mm-{Format(Mins)}");
+                break;
+            case ClockStatus.SetHours:
+                Hours -= 1;
                 Console.WriteLine($"piip-hh-{Format(Hours)}");
                 break;
 
@@ -112,6 +150,13 @@ class DigitalClock
         ClockStatus.SetHours => Format(Hours),
         ClockStatus.SetMins => $"{Format(Hours)}:{Format(Mins)}",
         ClockStatus.ShowTime => $"{Format(Hours)}:{Format(Mins)}",
+        _ => throw new ArgumentException("invalid state")
+    };
+    public String GetStatusPrompt() => Status switch
+    {
+        ClockStatus.SetHours => "Set Hours, press j to decrement, k to increment, enter to set",
+        ClockStatus.SetMins => "Set Mins, j to decrement, k to increment, enter to set",
+        ClockStatus.ShowTime => "winding the clock...",
         _ => throw new ArgumentException("invalid state")
     };
 }
