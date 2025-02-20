@@ -1,0 +1,39 @@
+# Ignore the build output directories
+bin/
+obj/
+
+# Ignore user-specific files
+.vs/
+.vscode/
+.idea/
+
+# Ignore user-specific settings for Rider/VSCode
+.idea/
+
+# Ignore generated files for Visual Studio
+.vs2019/
+.vs2022/
+
+# Ignore the package management folder (NuGet)
+packages/
+
+# Ignore the files used by VS to manage project/solution metadata
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Ignore Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Ignore logs
+*.log
+
+# Ignore backup and temporary files
+*~
+*.bak
+*.swp
+
